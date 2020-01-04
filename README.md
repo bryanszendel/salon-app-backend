@@ -5,9 +5,10 @@
 
 # API Documentation
 
-## GET  /api/items
+## `Clients`
+### GET  /api/clients
 
-Returns an array of item objects:
+Returns an array of client objects:
 ```json
 [
   {
@@ -27,11 +28,11 @@ Returns an array of item objects:
 ]
 ```
 
-## GET  /api/items/:id
+### GET  /api/clients/:id
 
 Receives an existing ID as a request parameter.
 
-Returns a single item object:
+Returns a single client object:
 ```json
 {
   "_id": 1,
@@ -42,7 +43,7 @@ Returns a single item object:
 }
 ```
 
-## POST  /api/items
+### POST  /api/clients
 
 Receives a request body:
 ```json
@@ -52,7 +53,7 @@ Receives a request body:
 }
 ```
 
-Returns the created item object:
+Returns the created client object:
 ```json
 {
   "_id": 1,
@@ -63,7 +64,7 @@ Returns the created item object:
 }
 ```
 
-## PUT  /api/items/:id
+### PUT  /api/clients/:id
 
 Receives an existing request parameter ID and a request body:
 ```json
@@ -73,7 +74,7 @@ Receives an existing request parameter ID and a request body:
 }
 ```
 
-Returns the updated item object:
+Returns the updated client object:
 ```json
 {
   "_id": 1,
@@ -84,13 +85,13 @@ Returns the updated item object:
 }
 ```
 
-## DELETE  /api/items/:id
+### DELETE  /api/clients/:id
 
 Receives an existing request parameter
 
 Returns a success message:
 ```json
 {
-  "message": "Item deleted successfully!"
+  "message": "Client deleted successfully!"
 }
 ```
