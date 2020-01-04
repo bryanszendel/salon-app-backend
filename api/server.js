@@ -4,8 +4,8 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
 //IMPORTED ROUTES HERE
-const itemsRouter = require('../items/items-router.js')
-
+const itemsRouter = require('../items/items-router.js');
+const clientsRouter = require('../clients/clients-router.js');
 
 const server = express();
 
@@ -20,6 +20,7 @@ server.get('/', (req, res) => {
 
 //USE ROUTES HERE
 server.use('/api/items', itemsRouter)
+server.use('/api/clients', clientsRouter)
 
 
 module.exports = server;
