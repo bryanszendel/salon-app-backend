@@ -8,19 +8,17 @@ mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
     useFindAndModify: false,
 }).then(() => {
-    console.log("Successfully connected to Clients collection");    
+    console.log("Successfully connected to Services collection");    
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
 
-const ClientSchema = mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: Number
+const ServiceSchema = mongoose.Schema({
+    name: String,
+    timeBlock: Number
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model('Client', ClientSchema);
+module.exports = mongoose.model('Service', ServiceSchema);

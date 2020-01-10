@@ -5,7 +5,8 @@ mongoose.Promise = global.Promise;
 // Connecting to the database
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
 }).then(() => {
     console.log("Successfully connected to Items collection");    
 }).catch(err => {

@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 //IMPORTED ROUTES HERE
 const itemsRouter = require('../items/items-router.js');
 const clientsRouter = require('../clients/clients-router.js');
+const servicesRouter = require('../services/services-router.js');
 
 const server = express();
 
@@ -21,6 +22,7 @@ server.get('/', (req, res) => {
 //USE ROUTES HERE
 server.use('/api/items', itemsRouter)
 server.use('/api/clients', clientsRouter)
+server.use('/api/services', servicesRouter)
 
 
 module.exports = server;
