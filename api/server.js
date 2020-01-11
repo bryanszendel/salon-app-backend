@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const itemsRouter = require('../items/items-router.js');
 const clientsRouter = require('../clients/clients-router.js');
 const servicesRouter = require('../services/services-router.js');
+const apptsRouter = require('../appts/appts-router.js');
 
 const server = express();
 
@@ -23,6 +24,7 @@ server.get('/', (req, res) => {
 server.use('/api/items', itemsRouter)
 server.use('/api/clients', clientsRouter)
 server.use('/api/services', servicesRouter)
+server.use('/api/appts', apptsRouter)
 
 
 module.exports = server;
