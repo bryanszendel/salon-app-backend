@@ -1,4 +1,5 @@
 const Client = require('./clients-model.js');
+const Appt = require('../appts/appts-model.js');
 
 // Create and Save a new client
 exports.create = (req, res) => {
@@ -38,17 +39,20 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Client.find()
   .then(clients => {
-      res.send(clients);
-  }).catch(err => {
-      res.status(500).send({
-          message: err.message || "Some error occurred while retrieving clients."
-      });
+    // TODO: populate appts array with client appointments
+    res.send(clients);
+  })
+  .catch(err => {
+    res.status(500).send({
+        message: err.message || "Some error occurred while retrieving clients."
+    });
   });
 };
 
 
 // Find a single client with a clientId
 exports.findOne = (req, res) => {
+  // let appts = Appt.find({clientID: req.params.clientId})
   Client.findById(req.params.clientId)
   .then(client => {
       if(!client) {
@@ -56,7 +60,11 @@ exports.findOne = (req, res) => {
               message: "client not found with id " + req.params.clientId
           });            
       }
-      res.send(client);
+      Appt.find({clientID: client._id})
+      .then(appts => {
+        client.appts = appts
+        res.send(client);
+      })
   }).catch(err => {
       if(err.kind === 'ObjectId') {
           return res.status(404).send({
