@@ -16,12 +16,26 @@ exports.create = (req, res) => {
     });
   }
 
+  if(!req.body.username) {
+    return res.status(400).send({
+        message: "Username cannot be empty"
+    });
+  }
+
+  if(!req.body.password) {
+    return res.status(400).send({
+        message: "Password cannot be empty"
+    });
+  }
+
   // Create a client
   const client = new Client({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    phone: req.body.phone
+    phone: req.body.phone,
+    username: req.body.username,
+    password: req.body.password
   });
 
   // Save client in the database

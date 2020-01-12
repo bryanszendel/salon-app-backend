@@ -20,6 +20,8 @@ const ClientSchema = mongoose.Schema({
   lastName: String,
   email: String,
   phone: Number,
+  username: String,
+  password: String,
   appts: [{ type: Schema.Types.ObjectId, ref: 'Appt'}]
 }, {
   timestamps: true
