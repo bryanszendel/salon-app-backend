@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Schema.Types.ObjectId;
+const Schema = mongoose.Schema
 
 mongoose.Promise = global.Promise;
 
@@ -16,8 +16,8 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 const ApptSchema = mongoose.Schema({
-    clientID: ObjectId,
-    serviceID: ObjectId,
+    clientID: {type: Schema.Types.ObjectId, ref: 'Client'},
+    serviceID: {type: Schema.Types.ObjectId, ref: 'Service'},
     datetimeStart: Date,
     datetimeEnd: Date
 }, {
