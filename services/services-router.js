@@ -1,24 +1,25 @@
 const router = require('express').Router();
 const {
   validateItemId,
-  validatePostReqBody
+  validatePostReqBody,
+  validateToken
 } = require('../api/middleware.js')
 
 const services = require('./services-controller.js');
 
 // Create a new service
-router.post('/', services.create);
+router.post('/', validateToken, services.create);
 
 // Retrieve all services
-router.get('/', services.findAll);
+router.get('/', validateToken, services.findAll);
 
 // Retrieve a single service with serviceId
-router.get('/:serviceId', services.findOne);
+router.get('/:serviceId', validateToken, services.findOne);
 
 // Update a service with serviceId
-router.put('/:serviceId', services.update);
+router.put('/:serviceId', validateToken, services.update);
 
 // Delete a service with serviceId
-router.delete('/:serviceId', services.delete);
+router.delete('/:serviceId', validateToken, services.delete);
 
 module.exports = router;
