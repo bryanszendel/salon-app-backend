@@ -1,8 +1,11 @@
 const Items = require('../items/items-model.js');
+const jwt = require('jsonwebtoken');
+const secrets = require('../config/secrets.js');
 
 module.exports = {
   validateItemId,
-  validatePostReqBody
+  validatePostReqBody,
+  validateToken
 }
 
 function validateItemId(req, res, next) {
@@ -33,5 +36,22 @@ function validatePostReqBody(req, res, next) {
     }
   } else {
     res.status(404).json({ message: 'Name field is required.'})
+  }
+}
+
+function validateToken(req, res, next) {
+  const token = req.headers.authorization
+  const secret = secrets.jwtSecret
+  if (token) {
+    jwt.verify(token, secret, (err, decoded) => {
+      if (err) {
+        res.status(401).json({ message: 'Credentials are invalid.' });
+      } else {
+        req.username = decoded.username
+        next()
+      }
+    })
+  } else {
+    res.status(400).json({ message: 'No credentials provided' })
   }
 }

@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
 //IMPORTED ROUTES HERE
+const usersRouter = require('../users/users-router.js');
 const itemsRouter = require('../items/items-router.js');
 const clientsRouter = require('../clients/clients-router.js');
 const servicesRouter = require('../services/services-router.js');
@@ -21,6 +22,7 @@ server.get('/', (req, res) => {
 });
 
 //USE ROUTES HERE
+server.use('/api/users', usersRouter)
 server.use('/api/items', itemsRouter)
 server.use('/api/clients', clientsRouter)
 server.use('/api/services', servicesRouter)

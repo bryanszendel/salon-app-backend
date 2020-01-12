@@ -2,25 +2,26 @@
 const router = require('express').Router();
 const {
   validateItemId,
-  validatePostReqBody
+  validatePostReqBody,
+  validateToken
 } = require('../api/middleware.js')
 
 // module.exports = (router) => {
   const items = require('./items-controller.js');
 
   // Create a new item
-  router.post('/', items.create);
+  router.post('/', validateToken, items.create);
 
   // Retrieve all items
-  router.get('/', items.findAll);
+  router.get('/', validateToken, items.findAll);
 
   // Retrieve a single item with itemId
-  router.get('/:itemId', items.findOne);
+  router.get('/:itemId', validateToken, items.findOne);
 
   // Update a item with itemId
-  router.put('/:itemId', items.update);
+  router.put('/:itemId', validateToken, items.update);
 
   // Delete a item with itemId
-  router.delete('/:itemId', items.delete);
+  router.delete('/:itemId', validateToken, items.delete);
 
 module.exports = router;
