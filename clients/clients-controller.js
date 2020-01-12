@@ -39,9 +39,13 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Client.find()
   .then(clients => {
-    // TODO: populate appts array with client appointments
-    res.send(clients);
+    res.send(clients)
   })
+  // Client.find(match, function (err, clients) {
+  //   let opts = [{ path: 'appts', match: {_id: "5e1a0170fed71e650ffc3147"}}];
+  
+  //   let promise = Client.populate(clients, opts);
+  //   promise.then(console.log).end();
   .catch(err => {
     res.status(500).send({
         message: err.message || "Some error occurred while retrieving clients."

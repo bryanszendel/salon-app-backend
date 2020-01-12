@@ -1,4 +1,5 @@
 const Appt = require('./appts-model.js');
+const Client = require('../clients/clients-model.js')
 
 // Create and Save a new appt
 exports.create = (req, res) => {
